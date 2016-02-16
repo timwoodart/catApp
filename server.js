@@ -21,11 +21,14 @@ app.get('/*', function(req, res) {
       })
     }
   }, function(err, results) {
-    console.log(results)
+    if (!err && results.cat) {
+      html = renderHtml(template,  {title: 'Most Awesome Cat', body: results.cat});
+    } else {
+      html = renderHtml(template, {title: "Cat API is down", body: '<h1>' + err + '</h1>'});
+    }
+    res.send(html);
   });
 
-  var html = renderHtml(template, {title: 'Mustache Template', body: 'Hello World'});
-  res.send(html);
 });
 
 app.listen(8000, function() {
