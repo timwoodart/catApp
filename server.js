@@ -2,8 +2,8 @@ var fs = require('fs');
 var async = require('async');
 var express = require('express');
 var mustache = require('mustache');
-var _request = require('request');
 var TEMPLATE_PATH = './app/views/index.mustache';
+var catApi = require('./app/services/catApi.js');
 
 var app = express();
 
@@ -12,13 +12,9 @@ app.get('/*', function(req, res) {
 
   async.series({
     cat: function(callback) {
-      _request('http://thecatapi.com/api/images/get?format=html', function(err, res, body) {
-        if (!err && res.statusCode == 200) {
-          callback(null, body);
-        } else {
-          callback(err);
-        }
-      })
+      var cat = catApi.getCat(function(err, body) {
+        callback(err, body)
+      });
     }
   }, function(err, results) {
     if (!err && results.cat) {
