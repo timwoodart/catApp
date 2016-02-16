@@ -1,0 +1,20 @@
+{
+  "name": "cat-app-demo",
+  "version": "1.0.0",
+  "description": "Cat App Sample Express App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Tim Wood <tim@timwoodart.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mustache": "^2.2.1",
+    "request": "^2.69.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
+  }
+}
